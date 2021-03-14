@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import './App.css';
 import axios from "axios"
 import Input from '@material-ui/core/Input'
+import Popup from "./Popup"
 
 
 
@@ -153,6 +154,7 @@ class App extends Component{
                   </button>
             <p>or you can can enter your informations in the input fields to get the prediction </p>
             <p>if empty fields are submitted we replace the empty field with the mean value , try to fill as many fields as you can </p>
+            <Popup/>
             <h1>age</h1>
             <Input       onKeyPress= {this.validate} placeholder = "type" onChange = {(e) => {this.setState({age : e.target.value })}} />
             <h1>sex</h1>
