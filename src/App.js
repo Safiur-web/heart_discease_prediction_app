@@ -33,8 +33,8 @@ class App extends Component{
       
      }
    }
-  onSubmit = (e) => {
-    e.preventDefault();
+  onSubmit = () => {
+   
 
     
     const data1 = [  
@@ -54,7 +54,7 @@ class App extends Component{
 
 
 
-    axios.post("http://localhost:5000/accept" , data1)
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}accept` , data1)
     .then((res) => {
       
       this.setState({pred : res.data.data})
@@ -122,7 +122,7 @@ class App extends Component{
     // Send formData object
    
   // //  https://www.geeksforgeeks.org/file-uploading-in-react-js/
-  axios.post("http://localhost:5000/csv", formData)
+  axios.post(`${process.env.REACT_APP_BACKEND_URL}csv`, formData)
   .then((res) =>{
     
     this.setState({pred : res.data.data})
@@ -154,6 +154,7 @@ class App extends Component{
                   </button>
             <p>or you can can enter your informations in the input fields to get the prediction </p>
             <p>if empty fields are submitted we replace the empty field with the mean value , try to fill as many fields as you can </p>
+  
             <Popup/>
             <h1>age</h1>
             <Input       onKeyPress= {this.validate} placeholder = "type" onChange = {(e) => {this.setState({age : e.target.value })}} />
@@ -204,3 +205,4 @@ class App extends Component{
 }
 
 export default App;
+
