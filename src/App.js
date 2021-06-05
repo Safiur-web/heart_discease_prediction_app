@@ -3,6 +3,8 @@ import './App.css';
 import axios from "axios"
 import Input from '@material-ui/core/Input'
 import Popup from "./Popup"
+import Loading from "./Loading"
+
 
 
 
@@ -29,7 +31,10 @@ class App extends Component{
        test : "" , 
        selectedFile: null , 
        status : "Input" , 
-       pred : []
+       pred : [] ,
+       
+       
+     
       
      }
    }
@@ -77,6 +82,8 @@ class App extends Component{
       console.log(err)
     })
 
+    this.setState({status : "loading" })
+    
   }
   
 
@@ -134,18 +141,22 @@ class App extends Component{
     console.log(err)
   })
 
+  this.setState({status : "loading"})
+
     
   };
   
 
   render(){
+    console.log(this.state.status)
+    
    
     if(this.state.status === "Input"){
       return (
         <div className="App">
         
             <div className = "tittle">
-              <h1>HEART DISEASE PREDICTOR </h1>
+              <h1 >HEART DISEASE PREDICTOR </h1>
             </div>
             <p>you can upload a csv file here to get the prediction</p>
             <input  type="file" id="fileSelect" accept=".csv" onChange={this.onFileChange}/>
@@ -156,35 +167,41 @@ class App extends Component{
             <p>if empty fields are submitted we replace the empty field with the mean value , try to fill as many fields as you can </p>
   
             <Popup/>
-            <h1>age</h1>
+            <h2>age</h2>
             <Input       onKeyPress= {this.validate} placeholder = "type" onChange = {(e) => {this.setState({age : e.target.value })}} />
-            <h1>sex</h1>
+            <h2>sex</h2>
             <Input       onKeyPress= {this.validate} placeholder = "type" onChange = {(e) => {this.setState({sex : e.target.value })}}  />
-            <h1>cp</h1>
+            <h2>cp</h2>
             <Input       onKeyPress= {this.validate} placeholder = "type" onChange = {(e) => {this.setState({ cp: e.target.value})}}/>
-            <h1>trestbps</h1>
+            <h2>trestbps</h2>
             <Input       onKeyPress= {this.validate} placeholder = "type" onChange = {(e) => {this.setState({trestbps : e.target.value})} }/>
-            <h1>chol</h1>
+            <h2>chol</h2>
             <Input       onKeyPress= {this.validate} placeholder = "type"onChange = {(e) => {this.setState({chol : e.target.value})}} />
-            <h1>fbs</h1>
+            <h2>fbs</h2>
             <Input       onKeyPress= {this.validate} placeholder = "type" onChange = {(e) => {this.setState({fbs : e.target.value})}} />
-            <h1>restecg</h1>
+            <h2>restecg</h2>
             <Input       onKeyPress= {this.validate} placeholder = "type"onChange = {(e) => {this.setState({ restecg: e.target.value})}}/>
-            <h1>thalach</h1>
+            <h2>thalach</h2>
             <Input       onKeyPress= {this.validate} placeholder = "type"onChange = {(e) => {this.setState({ thalach: e.target.value})}} />
-            <h1>exang</h1>
+            <h2>exang</h2>
             <Input       onKeyPress= {this.validate} placeholder = "type" onChange = {(e) => {this.setState({exang : e.target.value})}} />
-            <h1>oldpeak</h1>
+            <h2>oldpeak</h2>
             <Input       onKeyPress= {this.validate} placeholder = "type" onChange = {(e) => {this.setState({oldpeak : e.target.value})}} />
-            <h1>slope</h1>
+            <h2>slope</h2>
             <Input       onKeyPress= {this.validate} placeholder = "type"  onChange = {(e) => {this.setState({slope : e.target.value})}} />
-            <h1>ca</h1>
+            <h2>ca</h2>
             <Input       onKeyPress= {this.validate} placeholder = "type"  onChange = {(e) => {this.setState({ca : e.target.value})}} />
-            <h1>thal</h1>
+            <h2>thal</h2>
             <Input       onKeyPress= {this.validate} placeholder = "type"   onChange = {(e) => {this.setState({ thal: e.target.value})}} />
             <button   onClick = {this.onSubmit}>submit</button>   
           </div>
       );
+
+    }
+    else if(this.state.status === "loading"){
+      return(
+        <Loading/>
+      )
 
     }
 
@@ -193,7 +210,7 @@ class App extends Component{
         <div  className="App">
           <p>heart disease = 1 </p>
           <p>not heart disease = 0 </p>
-          <h1>{this.state.pred}</h1>
+          <h2>{this.state.pred}</h2>
           <button onClick = {() => {this.setState({status : "Input"})}} >back </button>
 
         </div>
@@ -205,4 +222,3 @@ class App extends Component{
 }
 
 export default App;
-
