@@ -148,7 +148,7 @@ class App extends Component{
   
 
   render(){
-    console.log(this.state.status)
+    
     
    
     if(this.state.status === "Input"){
