@@ -12,7 +12,7 @@ load_clf = pickle.load(open('heart_dis_pred.pkl1', 'rb'))
 app = Flask(__name__)
 CORS(app)
 
-print("version", sklearn.__version__)
+# print("version", sklearn.__version__)
 
 df = pd.read_csv("heart-disease-problem.csv")
 X = df.drop("target", axis=1)
