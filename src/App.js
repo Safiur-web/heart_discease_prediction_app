@@ -97,7 +97,6 @@ class App extends Component{
     }
     else{
       event.preventDefault()
-
     }
     }
 
@@ -150,7 +149,7 @@ class App extends Component{
   }
 
   render(){
-    console.log(process.env.REACT_APP_BACKEND_URL)
+
     if(this.state.status === "Input"){
       return (
         <div className="App">
