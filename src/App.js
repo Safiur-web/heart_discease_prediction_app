@@ -2,13 +2,15 @@ import React, {Component} from 'react'
 import './App.css';
 import axios from "axios"
 import Input from '@material-ui/core/Input'
-import Popup from "./Popup"
-import Loading from "./Loading"
+import Popup from "./components/Popup/Popup"
+import Loading from "./components/Loading/Loading"
+import Output1 from "./components/Output1/Output1"
+import Output2 from "./components/Output2/Output2"
 
 
 
-
-
+// const root = "https://heart-discease-render.onrender.com/"
+//process.env.REACT_APP_BACKEND_URL
 
 class App extends Component{
 
@@ -27,43 +29,46 @@ class App extends Component{
        oldpeak : "",
        slope : "",
        ca : "",
-       thal : "" , 
-       test : "" , 
-       selectedFile: null , 
-       status : "Input" , 
+       thal : "" ,
+       test : "" ,
+       selectedFile: null ,
+       status : "Input" ,
        pred : [] ,
-       
-       
-     
-      
+
+
+
+
      }
    }
-  onSubmit = () => {
-   
 
-    
-    const data1 = [  
+
+
+  onSubmit = () => {
+
+
+
+    const data1 = [
       this.state.age,
       this.state.sex,
       this.state.cp ,
       this.state.trestbps,
-      this.state.chol , 
-      this.state.fbs , 
-      this.state.restecg , 
-      this.state.thalach , 
-      this.state.exang , 
-      this.state.oldpeak , 
-      this.state.slope , 
-      this.state.ca , 
+      this.state.chol ,
+      this.state.fbs ,
+      this.state.restecg ,
+      this.state.thalach ,
+      this.state.exang ,
+      this.state.oldpeak ,
+      this.state.slope ,
+      this.state.ca ,
       this.state.thal]
 
 
 
     axios.post(`${process.env.REACT_APP_BACKEND_URL}accept` , data1)
     .then((res) => {
-      
+
       this.setState({pred : res.data.data})
-      this.setState({status : "output"})
+      this.setState({status : "output1"})
       this.setState({age : ""})
       this.setState({sex : ""})
       this.setState({cp : ""})
@@ -83,57 +88,54 @@ class App extends Component{
     })
 
     this.setState({status : "loading" })
-    
+
   }
-  
+
 
   validate = (event) =>{
     if(event.key >= 0 && event.key <= 10  && event.key !== " "){
-                       
+
     }
     else if(event.key === "."){
     }
     else{
       event.preventDefault()
-      
+
     }
     }
 
 
-
-
- 
   onFileChange = (e) => {
-    
+
     // Update the state
     this.setState({ selectedFile: e.target.files[0] });
-  
+
   };
   onFileUpload = () => {
-    
+
     // Create an object of formData
     const formData = new FormData();
-  
+
     // Update the formData object
     formData.append(
       "myFile",
       this.state.selectedFile
-      
+
     );
-    
-  
+
+
     // Details of the uploaded file
- 
-  
+
+
     // Request made to the backend api
     // Send formData object
-   
+
   // //  https://www.geeksforgeeks.org/file-uploading-in-react-js/
   axios.post(`${process.env.REACT_APP_BACKEND_URL}csv`, formData)
   .then((res) =>{
-    
+
     this.setState({pred : res.data.data})
-    this.setState({status : "output"})
+    this.setState({status : "output2"})
 
 
   })
@@ -143,18 +145,18 @@ class App extends Component{
 
   this.setState({status : "loading"})
 
-    
+
   };
-  
+
+  home = () => {
+    this.setState({status : "Input"})
+  }
 
   render(){
-    
-    
-   
+    console.log(process.env.REACT_APP_BACKEND_URL)
     if(this.state.status === "Input"){
       return (
         <div className="App">
-        
             <div className = "tittle">
               <h1 >HEART DISEASE PREDICTOR </h1>
             </div>
@@ -163,9 +165,9 @@ class App extends Component{
             <button onClick={this.onFileUpload}>
                     Upload!
                   </button>
-            <p>or you can can enter your informations in the input fields to get the prediction </p>
-            <p>if empty fields are submitted we replace the empty field with the mean value , try to fill as many fields as you can </p>
-  
+            <p>Or you can can enter your informations in the input fields to get the prediction </p>
+            <p>If empty fields are submitted we replace the empty field with the mean value , try to fill as many fields as you can </p>
+
             <Popup/>
             <h2>age</h2>
             <Input       onKeyPress= {this.validate} placeholder = "type" onChange = {(e) => {this.setState({age : e.target.value })}} />
@@ -193,8 +195,8 @@ class App extends Component{
             <Input       onKeyPress= {this.validate} placeholder = "type"  onChange = {(e) => {this.setState({ca : e.target.value})}} />
             <h2>thal</h2>
             <Input       onKeyPress= {this.validate} placeholder = "type"   onChange = {(e) => {this.setState({ thal: e.target.value})}} />
-            <button   onClick = {this.onSubmit}>submit</button>   
-          </div>
+            <button   onClick = {this.onSubmit}>submit</button>
+        </div>
       );
 
     }
@@ -202,23 +204,21 @@ class App extends Component{
       return(
         <Loading/>
       )
-
     }
 
-    else{
+    else if(this.state.status === "output1"){
       return(
-        <div  className="App">
-          <p>heart disease = 1 </p>
-          <p>not heart disease = 0 </p>
-          <h2>{this.state.pred}</h2>
-          <button onClick = {() => {this.setState({status : "Input"})}} >back </button>
-
-        </div>
+        <Output1 pred = {this.state.pred} home = {this.home} />
       )
     }
-  
-   }
-  
+    else{
+      return(
+        <Output2 pred = {this.state.pred} home = {this.home} />
+      )
+
+    }
+}
+
 }
 
 export default App;
