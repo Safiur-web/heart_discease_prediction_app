@@ -131,6 +131,7 @@ class App extends Component{
   .then((res) =>{
 
     this.setState({pred : res.data.data})
+    this.setState({selectedFile : null})
     this.setState({status : "output2"})
 
 
