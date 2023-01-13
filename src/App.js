@@ -9,9 +9,6 @@ import Output2 from "./components/Output2/Output2"
 
 
 
-// const root = "https://heart-discease-render.onrender.com/"
-//process.env.REACT_APP_BACKEND_URL
-
 class App extends Component{
 
    constructor(){
@@ -160,13 +157,13 @@ class App extends Component{
             <div className = "tittle">
               <h1 >HEART DISEASE PREDICTOR </h1>
             </div>
-            <p>you can upload a csv file here to get the prediction</p>
+            <p>You can upload a csv file here to get the prediction</p>
             <input  type="file" id="fileSelect" accept=".csv" onChange={this.onFileChange}/>
             <button onClick={this.onFileUpload}>
                     Upload!
                   </button>
             <p>Or you can can enter your informations in the input fields to get the prediction </p>
-            <p>If empty fields are submitted we replace the empty field with the mean value , try to fill as many fields as you can </p>
+            <p>If empty fields are submitted then we replace the empty fields with the mean value, try to fill as many fields as you can </p>
 
             <Popup/>
             <h2>age</h2>
