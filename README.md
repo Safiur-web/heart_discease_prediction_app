@@ -1,10 +1,10 @@
 # heart_discease_prediction_app
 
-*Developed a full stack machine learning web app for predicting heart disease.
+* Developed a full stack machine learning web app for predicting heart disease.
 
-*Implemented End to end heart disease classifier ,with three different machine learning models. Later used the best model for the backend.
+* Implemented End to end heart disease classifier ,with three different machine learning models. Later used the best model for the backend.
 
-*Tech: React.js, Flask, Numpy, Pandas, Scikit learn
+* Tech: React.js, Flask, Numpy, Pandas, Scikit learn
 
 * Used algorithms KNeighborsClassifier, LogisticRegression and RandomForestClassifier
 
