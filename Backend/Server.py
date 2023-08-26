@@ -3,10 +3,10 @@ from flask_cors import CORS
 import numpy as np
 import pandas as pd
 import pickle
-import sklearn
 
 
-load_clf = pickle.load(open('heart_dis_pred.pkl1', 'rb'))
+
+load_clf = pickle.load(open('models/heart_class3.pkl', 'rb'))
 
 
 app = Flask(__name__)
@@ -14,11 +14,11 @@ CORS(app)
 
 # print("version", sklearn.__version__)
 
-df = pd.read_csv("heart-disease-problem.csv")
+df = pd.read_csv("data/heart-disease-problem.csv")
 X = df.drop("target", axis=1)
 data = []
 colms = []
-print(X)
+# print(X)
 
 for col in X.columns:
     X[col].mean()
@@ -27,7 +27,8 @@ for col in X.columns:
                  "mean":  X[col].mean()})
 
 
-@app.route("/send",  methods=["get"])
+
+@app.route("/",  methods=["get"])
 def send():
     return jsonify({"data": data})
 
@@ -77,7 +78,7 @@ def csv_check():
 
 
 if __name__ == "main":
-    app.run(debug=True)
+    app.run(debug=True,port=8001)
 
 
 # set FLASK_APP=Server.py
