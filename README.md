@@ -24,10 +24,10 @@ For Backend
 
 1. `cd Backend`
 2. `pip3 install -r requirements.txt`
-3. `set FLASK_APP=Server.py`
-4. `flask run`
+3. `python Server.py`
 
-
+For Docker
+      Frontend
 
 <!--- https://user-images.githubusercontent.com/64213233/137638706-02a6f5cc-8f3e-49df-9c74-f1046f3bbe62.mp4 --->
 
