@@ -8,11 +8,11 @@
     * The frontend was Dockerized, securing its dependencies and configurations within a containerized environment.
     * The backend was similarly Dockerized, providing an isolated environment tailored for the deployment of the heart disease classifier.
 
-** Deployed Here **
+# Deployed Here 
 [Live Link](https://condescending-ritchie-ab03db.netlify.app/)
 
 
-# Dagshub Repo link: For experiment tracking
+**Dagshub Repo link: For experiment tracking**
 [Project Link](https://dagshub.com/mb16biswas/fullstack_heart_discease_prediction_app)
 
 
