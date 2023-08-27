@@ -29,6 +29,7 @@ For Backend
 For Docker
 
 * Frontend
+  
         * For Development
             1. `docker build -f Dockerfile.dev -t react .`
             2. `docker run --name react -p 3000:3000 react`
@@ -37,6 +38,7 @@ For Docker
             2.  `docker run --name react_proc -p 3000:80 react_pro`
 
 * Backend
+  
 1. `docker build -t back .`
 2. `docker run --name back_c -p 8000:8000 back`
 
