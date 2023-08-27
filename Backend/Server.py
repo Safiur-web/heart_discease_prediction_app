@@ -6,7 +6,7 @@ import pickle
 
 
 
-load_clf = pickle.load(open('models/heart_class3.pkl', 'rb'))
+load_clf = pickle.load(open('models/Logistic_Regression.pkl', 'rb'))
 
 
 app = Flask(__name__)
@@ -18,7 +18,6 @@ df = pd.read_csv("data/heart-disease-problem.csv")
 X = df.drop("target", axis=1)
 data = []
 colms = []
-# print(X)
 
 for col in X.columns:
     X[col].mean()
@@ -77,10 +76,24 @@ def csv_check():
         return jsonify({"data": "enter a valid csv file"})
 
 
-if __name__ == "main":
-    app.run(debug=True,port=8001)
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=8000)
 
 
+#For runing Flask App (Method1)
 # set FLASK_APP=Server.py
 # flask run
+
+
+#For runing Flask App (Method2)
+# flask --app Server run
+
+
+#For runing Flask App (Method3)
+# python Server.py
+
+
+#docker
+#docker build -t back .
+#docker run --name back_c -p 8000:8000 back
 

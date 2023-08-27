@@ -14,8 +14,8 @@ path = "data/heart-disease-problem.csv"
 
 
 models = {
-         "Logistic Regression": LogisticRegression(), 
-          "Random Forest": RandomForestClassifier() , 
+         "Logistic_Regression": LogisticRegression(), 
+          "Random_Forest": RandomForestClassifier() , 
           "log_ht" : LogisticRegression(solver ='liblinear', penalty = 'l2', C = 1.0 , tol = 1e-05, intercept_scaling = 2.0 ) , 
           "ran_ht" : RandomForestClassifier( n_estimators = 800,
                                               min_samples_split = 2,
