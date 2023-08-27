@@ -1,12 +1,12 @@
 # heart_discease_prediction_app
 
-* Developed a full stack machine learning web app for predicting heart disease.
-
-* Implemented End to end heart disease classifier ,with three different machine learning models. Later used the best model for the backend.
-
-* Tech: React.js, Flask, Numpy, Pandas, Scikit learn
-
-* Used algorithms KNeighborsClassifier, LogisticRegression and RandomForestClassifier
+*Developed a comprehensive full-stack machine learning web application designed to predict occurrences of heart disease.
+*Implemented an end-to-end heart disease classifier that encompasses three distinct machine learning models: KNeighborsClassifier, LogisticRegression, and RandomForestClassifier. The *most effective model was subsequently chosen for integration into the application's backend.
+*Employed Mlflow to monitor and document the progression of machine learning experiments, enhancing the analysis of model performance and facilitating comparisons between different approaches.
+*Ensured meticulous dataset versioning and management through the utilization of DVC (Data Version Control), contributing to the reproducibility and consistency of data preprocessing and model training procedures.
+*To mitigate the common "works on my machine" dilemma that often arises due to variations in development environments, both the frontend and backend components were encapsulated within Docker containers.
+    *The frontend was Dockerized, securing its dependencies and configurations within a containerized environment.
+    *The backend was similarly Dockerized, providing an isolated environment tailored for the deployment of the heart disease classifier.
 
 # Deployed Here
 [Live Link](https://condescending-ritchie-ab03db.netlify.app/)
