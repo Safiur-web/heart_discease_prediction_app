@@ -7,6 +7,7 @@
 * To mitigate the common "works on my machine" dilemma that often arises due to variations in development environments, both the frontend and backend components were encapsulated within Docker containers.
     * The frontend was Dockerized, securing its dependencies and configurations within a containerized environment.
     * The backend was similarly Dockerized, providing an isolated environment tailored for the deployment of the heart disease classifier.
+* Tech: Scikit-learn, Pandas, Numpy, Mlflow, Flask, Docker, React.js
 
 # Deployed Here 
 [Live Link](https://condescending-ritchie-ab03db.netlify.app/)
