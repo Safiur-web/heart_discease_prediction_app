@@ -30,10 +30,10 @@ For Docker
 
 * Frontend
   
-        * For Development
+        For Development
             1. `docker build -f Dockerfile.dev -t react .`
             2. `docker run --name react -p 3000:3000 react`
-        * For Production
+        For Production
             1. `docker build -t react_pro .`
             2.  `docker run --name react_proc -p 3000:80 react_pro`
 
