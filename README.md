@@ -8,7 +8,7 @@
     * The frontend was Dockerized, securing its dependencies and configurations within a containerized environment.
     * The backend was similarly Dockerized, providing an isolated environment tailored for the deployment of the heart disease classifier.
 
-# Deployed Here
+** Deployed Here **
 [Live Link](https://condescending-ritchie-ab03db.netlify.app/)
 
 
