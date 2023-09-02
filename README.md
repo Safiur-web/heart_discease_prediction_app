@@ -41,7 +41,7 @@ For Docker
   
        docker build -f Dockerfile.dev -t react .
            
-       docker run --name react -p 3000:3000 react
+       docker run --name react_c -p 3000:3000 react
 
      * Production
   
