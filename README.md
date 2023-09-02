@@ -39,7 +39,7 @@ For Docker
   
      * Development
   
-       #docker build -f Dockerfile.dev -t react .
+       docker build -f Dockerfile.dev -t react .
            
        docker run --name react -p 3000:3000 react
 
