@@ -29,8 +29,10 @@
 ### For Backend
 
 1. `cd Backend`
-2. `pip3 install -r requirements.txt`
-3. `python Server.py`
+2. `python -m venv my-env`
+3. `my-env\Scripts\activate`
+4. `pip install -r requirements.txt`
+5. `python Server.py`
 
 
 ### For Docker
