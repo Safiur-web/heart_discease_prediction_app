@@ -19,21 +19,21 @@
 
 # Download the repository and install the required packages:
 
-Clone this repo
+## Clone this repo
 
-For frontend 
+### For frontend 
 
 1. `npm install`
 2. `npm start`
 
-For Backend
+### For Backend
 
 1. `cd Backend`
 2. `pip3 install -r requirements.txt`
 3. `python Server.py`
 
 
-For Docker
+### For Docker
 
 * Frontend
   
@@ -55,7 +55,7 @@ For Docker
 2. `docker run -p 8000:8000 -e PORT=8000 my-python-app`
 
 
-# For GCP Production:
+### For GCP Production:
 
 `gcloud auth login`
 
