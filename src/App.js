@@ -151,6 +151,7 @@ class App extends Component{
 
   render(){
 
+
     if(this.state.status === "Input"){
       return (
         <div className="App">

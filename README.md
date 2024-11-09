@@ -51,12 +51,22 @@ For Docker
 
 * Backend
   
-1. `docker build -t back .`
-2. `docker run --name back_c -p 8000:8000 back`
+1. `docker build -t my-python-app .`
+2. `docker run -p 8000:8000 -e PORT=8000 my-python-app`
 
 
-<!--- https://user-images.githubusercontent.com/64213233/137638706-02a6f5cc-8f3e-49df-9c74-f1046f3bbe62.mp4 --->
+# For GCP Production:
+
+`gcloud auth login`
+
+`gcloud config set project PROJECT_ID`
+
+`gcloud builds submit --tag gcr.io/<ProjectName>/<AppName>  --project=<ProjectName>`
+
+`gcloud run deploy --image gcr.io/<ProjectName>/<AppName> --platform managed  --project=<ProjectName> --allow-unauthenticated`
 
 # Demo 
 
 https://user-images.githubusercontent.com/64213233/217737206-39bfe852-6787-48e4-a49b-dce71f4fbc26.mp4
+
+

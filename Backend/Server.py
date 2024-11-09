@@ -3,6 +3,7 @@ from flask_cors import CORS
 import numpy as np
 import pandas as pd
 import pickle
+import os
 
 
 
@@ -77,7 +78,7 @@ def csv_check():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=8000)
+    app.run(debug=False, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
 
 
 #For runing Flask App (Method1)
@@ -94,6 +95,6 @@ if __name__ == "__main__":
 
 
 #docker
-#docker build -t back .
-#docker run --name back_c -p 8000:8000 back
+#docker build -t my-python-app .
+#docker run -p 8000:8000 -e PORT=8000 my-python-app
 
