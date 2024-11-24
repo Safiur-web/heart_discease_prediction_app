@@ -30,14 +30,14 @@ jobs:
       # Step 3: Install dependencies
       - name: Install Dependencies
         run: |
-          cd backend  # Navigate to backend directory
+          cd Backend
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       # Step 4: Run tests (unit/integration)
       - name: Run Tests
         run: |
-          cd backend  # Navigate to backend directory
+          cd Backend
           python -m unittest discover -s tests
 
       # Step 5: Authenticate with Google Cloud
@@ -55,13 +55,13 @@ jobs:
       # Step 7: Build container image
       - name: Build Container Image
         run: |
-          cd backend  # Navigate to backend directory
+          cd Backend
           gcloud builds submit --tag gcr.io/$PROJECT_ID/$APP_ID:$GITHUB_SHA .
 
       # Step 8: Deploy to Cloud Run
       - name: Deploy to Cloud Run
         run: |
-          cd backend  # Navigate to backend directory
+          cd Backend
           gcloud run deploy $APP_ID \
             --image=gcr.io/$PROJECT_ID/$APP_ID:$GITHUB_SHA \
             --region=$RUN_REGION \
