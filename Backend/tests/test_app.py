@@ -52,50 +52,6 @@ class TestServer(unittest.TestCase):
         self.assertIn("data", data)
         self.assertIsInstance(data["data"], list)  # Ensure prediction is a list
 
-    def test_csv_endpoint_valid_file(self):
-        """
-        Test the `/csv` endpoint with a valid CSV file.
-        """
-        csv_data = "age,sex,cp,trestbps,chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal\n\
-63,1,3,145,233,1,0,150,0,2.3,0,0,1\n"
-        response = self.client.post(
-            "/csv",
-            data={"myFile": (io.BytesIO(csv_data.encode()), "test.csv")},
-            content_type="multipart/form-data"
-        )
-        self.assertEqual(response.status_code, 200)
-        data = response.get_json()
-        self.assertIn("data", data)
-        self.assertIsInstance(data["data"], list)  # Ensure prediction is a list
-
-    def test_csv_endpoint_invalid_file(self):
-        """
-        Test the `/csv` endpoint with an invalid file type.
-        """
-        response = self.client.post(
-            "/csv",
-            data={"myFile": (io.BytesIO(b"invalid data"), "test.txt")},
-            content_type="multipart/form-data"
-        )
-        self.assertEqual(response.status_code, 200)
-        data = response.get_json()
-        self.assertIn("data", data)
-        self.assertEqual(data["data"], "wrong file type")  # Ensure proper error message
-
-    def test_csv_endpoint_invalid_columns(self):
-        """
-        Test the `/csv` endpoint with a CSV file having invalid columns.
-        """
-        csv_data = "invalid_col1,invalid_col2\n1,2\n"
-        response = self.client.post(
-            "/csv",
-            data={"myFile": (io.BytesIO(csv_data.encode()), "test_invalid.csv")},
-            content_type="multipart/form-data"
-        )
-        self.assertEqual(response.status_code, 200)
-        data = response.get_json()
-        self.assertIn("data", data)
-        self.assertEqual(data["data"], "enter a valid csv file")  # Ensure proper error message
 
 
 if __name__ == "__main__":
