@@ -1,8 +1,10 @@
-name: Deploy to Cloud Run
+name: CI/CD Pipeline
+
 on:
   push:
     branches:
       - main
+  pull_request:
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
@@ -11,26 +13,48 @@ env:
   SA_KEY_JSON: ${{ secrets.GCP_SA_KEY_JSON }}
 
 jobs:
-  deploy:
-    name: Deploy to Cloud Run
+  build-and-deploy:
+    name: Build, Test, and Deploy
     runs-on: ubuntu-latest
     steps:
+      # Step 1: Checkout the repository
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      # Step 2: Setup Python environment for testing
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      # Step 3: Install dependencies
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Step 4: Run tests (unit/integration)
+      - name: Run Tests
+        run: |
+          python -m unittest discover -s tests
+
+      # Step 5: Authenticate with Google Cloud
       - name: Authenticate with Google Cloud
         uses: google-github-actions/auth@v0
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY_JSON }}
 
+      # Step 6: Setup Google Cloud CLI
       - name: Setup Google Cloud CLI
         uses: google-github-actions/setup-gcloud@v1
         with:
           version: "latest"
 
+      # Step 7: Build container image
       - name: Build Container Image
         run: gcloud builds submit --tag gcr.io/$PROJECT_ID/$APP_ID:$GITHUB_SHA
 
+      # Step 8: Deploy to Cloud Run
       - name: Deploy to Cloud Run
         run: |
           gcloud run deploy $APP_ID \
