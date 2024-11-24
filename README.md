@@ -67,6 +67,12 @@
 
 `gcloud run deploy --image gcr.io/<ProjectName>/<AppName> --platform managed  --project=<ProjectName> --allow-unauthenticated`
 
+`gcloud iam service-accounts list --project=<ProjectName>`
+
+`gcloud iam service-accounts keys create ./keys.json --iam-account <Service-account>`
+
+`gcloud auth activate-service-account --key-file=keys.json`
+
 # Demo 
 
 https://user-images.githubusercontent.com/64213233/217737206-39bfe852-6787-48e4-a49b-dce71f4fbc26.mp4
