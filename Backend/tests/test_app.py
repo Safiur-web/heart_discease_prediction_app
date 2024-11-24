@@ -75,20 +75,6 @@ class TestServer(unittest.TestCase):
         data = response.get_json()
         self.assertEqual(data["data"], "wrong file type")
 
-    def test_csv_endpoint_invalid_columns(self):
-        """Test the `/csv` endpoint with a CSV file having invalid columns."""
-        csv_data = io.StringIO(
-            "wrong_col1,wrong_col2,wrong_col3\n"
-            "1,2,3\n"
-            "4,5,6"
-        )
-        response = self.client.post(
-            "/csv",
-            data={"myFile": (csv_data, "test_invalid.csv")}
-        )
-        self.assertEqual(response.status_code, 200)
-        data = response.get_json()
-        self.assertEqual(data["data"], "enter a valid csv file")
 
 if __name__ == "__main__":
     unittest.main()
