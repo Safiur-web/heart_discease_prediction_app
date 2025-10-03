@@ -61,7 +61,8 @@ class App extends Component{
 
 
 
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}accept` , data1)
+    axios.post("http://127.0.0.1:8000/accept", data1)
+
     .then((res) => {
 
       this.setState({pred : res.data.data})
@@ -127,7 +128,8 @@ class App extends Component{
     // Send formData object
 
   // //  https://www.geeksforgeeks.org/file-uploading-in-react-js/
-  axios.post(`${process.env.REACT_APP_BACKEND_URL}csv`, formData)
+ axios.post("http://127.0.0.1:8000/csv", formData)
+
   .then((res) =>{
 
     this.setState({pred : res.data.data})
